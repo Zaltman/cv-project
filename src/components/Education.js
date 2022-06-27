@@ -13,7 +13,7 @@ class Education extends Component {
 
   render() {
     const { educationObj } = this.props;
-    console.log(educationObj.id);
+    console.log(educationObj);
     return (
       <div key={educationObj.id}>
         <form className={'educationContainer inputContainer'}>
@@ -22,10 +22,19 @@ class Education extends Component {
             placeholder="Course / Program"
             value={educationObj.courseProgram}
           ></input>
-          <input placeholder="University"></input>
-          <input placeholder="Start Date"></input>
-          <input placeholder="End Date"></input>
-          <input placeholder="Description"></input>
+          <input
+            placeholder="University"
+            value={educationObj.university}
+          ></input>
+          <input
+            placeholder="Start Date"
+            value={educationObj.startDate}
+          ></input>
+          <input placeholder="End Date" value={educationObj.endDate}></input>
+          <input
+            placeholder="Description"
+            value={educationObj.description}
+          ></input>
           <button onClick={this.addAnotherEducation}>Add another</button>
         </form>
       </div>
