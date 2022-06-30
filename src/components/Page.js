@@ -13,12 +13,27 @@ class Page extends Component {
   render() {
     const state = this.props.state;
     const addAnotherEducation = this.props.addAnotherEducation;
+    const addAnotherWorkExp = this.props.addAnotherWorkExp;
     const handleChangeEdu = this.props.handleChangeEdu;
+    const handleChangeWorkExp = this.props.handleChangeWorkExp;
     // console.log(addAnotherEducation);
     return (
       <div>
         <PersonalDetails />
-        <WorkExp />
+
+        {state.workExperienceArr.map((workExpObj, index) => {
+          return (
+            <WorkExp
+              workExpObj={workExpObj}
+              key={workExpObj.id}
+              index={index}
+              handleChangeWorkExp={handleChangeWorkExp}
+            />
+          );
+        })}
+
+        <button onClick={addAnotherWorkExp}>Add work experience</button>
+
         {state.educationArr.map((educationObj, index) => {
           return (
             <Education
