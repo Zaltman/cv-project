@@ -6,24 +6,30 @@ import PersonalDetails from './PersonalDetails';
 import WorkExp from './WorkExp';
 
 class Page extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
-    let dataObj = this.props.dataObj;
-    // const dataObj = this.props;
+    const state = this.props.state;
+    const addAnotherEducation = this.props.addAnotherEducation;
+    const handleChangeEdu = this.props.handleChangeEdu;
+    // console.log(addAnotherEducation);
     return (
       <div>
         <PersonalDetails />
         <WorkExp />
-        {/* {console.log(dataObj)} */}
-        {dataObj.educationArr.map((educationObj, index) => {
-          // console.log(educationObj);
+        {state.educationArr.map((educationObj, index) => {
           return (
-            <Education educationObj={educationObj} key={educationObj.id} />
+            <Education
+              educationObj={educationObj}
+              key={educationObj.id}
+              index={index}
+              handleChangeEdu={handleChangeEdu}
+            />
           );
         })}
+        <button onClick={addAnotherEducation}>Add education</button>
 
         <Cv />
       </div>

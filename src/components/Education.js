@@ -1,41 +1,54 @@
 import React, { Component } from 'react';
 
 class Education extends Component {
-  constructor(props) {
-    super(props);
-    this.addAnotherEducation = this.addAnotherEducation.bind(this);
-  }
-
-  addAnotherEducation = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-  };
+  // constructor(props) {
+  //   super(props);
+  // }
+  // this.addAnotherEducation = this.addAnotherEducation.bind(this);
 
   render() {
-    const { educationObj } = this.props;
-    console.log(educationObj);
+    const { educationObj, handleChangeEdu, index } = this.props;
+    // console.log(educationObj);
+
     return (
-      <div key={educationObj.id}>
-        <form className={'educationContainer inputContainer'}>
+      <div>
+        <form
+          className={'educationContainer inputContainer'}
+          data-index={index}
+          data-dataidentify={2}
+        >
           <div id="educationContainerTitle">Education</div>
           <input
+            data-inputname={'courseProgram'}
             placeholder="Course / Program"
-            value={educationObj.courseProgram}
+            onChange={handleChangeEdu}
+            defaultValue={educationObj.courseProgram}
           ></input>
           <input
+            data-inputname={'university'}
             placeholder="University"
+            // defaultValue={educationObj.university}
+            onChange={handleChangeEdu}
             value={educationObj.university}
           ></input>
           <input
+            data-inputname={'startDate'}
             placeholder="Start Date"
-            value={educationObj.startDate}
+            onChange={handleChangeEdu}
+            defaultValue={educationObj.startDate}
           ></input>
-          <input placeholder="End Date" value={educationObj.endDate}></input>
           <input
-            placeholder="Description"
-            value={educationObj.description}
+            data-inputname={'endDate'}
+            onChange={handleChangeEdu}
+            placeholder="End Date"
+            defaultValue={educationObj.endDate}
           ></input>
-          <button onClick={this.addAnotherEducation}>Add another</button>
+          <input
+            data-inputname={'description'}
+            onChange={handleChangeEdu}
+            placeholder="Description"
+            defaultValue={educationObj.description}
+          ></input>
         </form>
       </div>
     );
