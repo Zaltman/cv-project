@@ -5,7 +5,16 @@ class Cv extends Component {
     super(props);
   }
   render() {
-    return <div></div>;
+    const { state } = this.props;
+    return (
+      <div>
+        <div>{state.personalDetails.name}</div>
+        <div>{state.personalDetails.phone}</div>
+        <div>{state.personalDetails.email}</div>
+        <div>{state.personalDetails.location}</div>
+        <div>{state.personalDetails.description}</div>
+      </div>
+    );
   }
 }
 

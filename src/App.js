@@ -38,8 +38,7 @@ class App extends Component {
       personalDetails: {
         id: uniqid(),
         name: '',
-        title: '',
-        phone: 0,
+        phone: '',
         email: '',
         location: '',
         description: '',
@@ -106,6 +105,59 @@ class App extends Component {
       workExperienceArr: newArray,
     });
   };
+  handleChangePersonal = (e) => {
+    let value = e.target.value;
+    let newPersObj = this.state.personalDetails;
+    let inputName = e.target.dataset.inputname;
+    console.log(this.state.personalDetails);
+    switch (inputName) {
+      case 'name':
+        newPersObj.name = value;
+        break;
+      case 'phone':
+        newPersObj.phone = value;
+        break;
+      case 'email':
+        newPersObj.email = value;
+        break;
+      case 'location':
+        newPersObj.location = value;
+        break;
+      case 'description':
+        newPersObj.description = value;
+        break;
+    }
+    this.setState({
+      personalDetails: newPersObj,
+    });
+  };
+
+  handleChangeWorkExp = (e) => {
+    let arrIndex = e.target.parentElement.dataset.index;
+    let value = e.target.value;
+    let newWorkExpArr = [...this.state.workExperienceArr];
+    let inputName = e.target.dataset.inputname;
+    switch (inputName) {
+      case 'company':
+        newWorkExpArr[arrIndex].company = value;
+        break;
+      case 'position':
+        newWorkExpArr[arrIndex].position = value;
+        break;
+      case 'startDate':
+        newWorkExpArr[arrIndex].startDate = value;
+        break;
+      case 'endDate':
+        newWorkExpArr[arrIndex].endDate = value;
+        break;
+      case 'description':
+        newWorkExpArr[arrIndex].description = value;
+        break;
+    }
+    this.setState({
+      workExperienceArr: newWorkExpArr,
+    });
+  };
   handleChangeEdu = (e) => {
     let arrIndex = e.target.parentElement.dataset.index;
     let value = e.target.value;
@@ -132,34 +184,6 @@ class App extends Component {
       educationArr: newEduArr,
     });
   };
-  handleChangeWorkExp = (e) => {
-    let arrIndex = e.target.parentElement.dataset.index;
-    let value = e.target.value;
-    let newWorkExpArr = [...this.state.workExperienceArr];
-    let inputName = e.target.dataset.inputname;
-    console.log({ arrIndex, value, newWorkExpArr, inputName });
-    switch (inputName) {
-      case 'company':
-        newWorkExpArr[arrIndex].company = value;
-        break;
-      case 'position':
-        newWorkExpArr[arrIndex].position = value;
-        break;
-      case 'startDate':
-        newWorkExpArr[arrIndex].startDate = value;
-        break;
-      case 'endDate':
-        newWorkExpArr[arrIndex].endDate = value;
-        break;
-      case 'description':
-        newWorkExpArr[arrIndex].description = value;
-        break;
-    }
-    console.log('ss');
-    this.setState({
-      workExperienceArr: newWorkExpArr,
-    });
-  };
 
   render() {
     return (
@@ -168,6 +192,7 @@ class App extends Component {
           state={this.state}
           addAnotherEducation={this.addAnotherEducation}
           addAnotherWorkExp={this.addAnotherWorkExp}
+          handleChangePersonal={this.handleChangePersonal}
           handleChangeEdu={this.handleChangeEdu}
           handleChangeWorkExp={this.handleChangeWorkExp}
         />
