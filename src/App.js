@@ -12,37 +12,38 @@ class App extends Component {
     let workExpTestUnit = [];
     educationTestUnit[0] = {
       id: uniqid(),
-      courseProgram: 'Test course',
-      university: 'Test university',
-      startDate: 'Test start date',
-      endDate: 'Test end date',
-      description: 'Test description',
-    };
-    educationTestUnit[1] = {
-      id: uniqid(),
-      courseProgram: 'Test course1',
-      university: 'Test university1',
-      startDate: 'Test start date1',
-      endDate: 'Test end date1',
-      description: 'Test description1',
+      courseProgram: 'Full stack development',
+      university: 'The odin project',
+      startDate: '2021/09/30',
+      endDate: 'Ongoing',
+      description: 'Lore ipsum text',
     };
     workExpTestUnit[0] = {
       id: uniqid(),
-      company: '',
-      position: '',
-      startDate: '',
-      endDate: '',
-      description: '',
+      company: 'Things and stuff LTD',
+      position: 'Operator',
+      startDate: '2015/05/07',
+      endDate: '2019/04/07',
+      description: 'Doing things and stuff 5 days a week',
+    };
+    let personDetailsTest = {
+      id: uniqid(),
+      name: 'John Johnson ',
+      phone: '+3641231456',
+      email: 'johnjohnson@email.com',
+      location: 'Atlantis, seaside city',
+      description: 'I am a simple man',
     };
     this.state = {
-      personalDetails: {
-        id: uniqid(),
-        name: '',
-        phone: '',
-        email: '',
-        location: '',
-        description: '',
-      },
+      personalDetails: personDetailsTest,
+      // {
+      //   id: uniqid(),
+      //   name: '',
+      //   phone: '',
+      //   email: '',
+      //   location: '',
+      //   description: '',
+      // },
       workExperience: {
         id: uniqid(),
         company: '',
@@ -59,7 +60,7 @@ class App extends Component {
         endDate: '',
         description: '',
       },
-      workExperienceArr: [],
+      workExperienceArr: workExpTestUnit,
       education: {
         id: uniqid(),
         courseProgram: '',
@@ -77,7 +78,7 @@ class App extends Component {
         description: '',
       },
 
-      educationArr: [],
+      educationArr: educationTestUnit,
     };
   }
   getEmptyEducationSample = () => {

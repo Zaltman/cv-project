@@ -20,35 +20,37 @@ class Page extends Component {
     // console.log(addAnotherEducation);
     return (
       <div>
-        <PersonalDetails
-          personalDetailsObj={state.personalDetails}
-          handleChangePersonal={handleChangePersonal}
-        />
+        <div className="inputsContainer">
+          <PersonalDetails
+            personalDetailsObj={state.personalDetails}
+            handleChangePersonal={handleChangePersonal}
+          />
 
-        {state.workExperienceArr.map((workExpObj, index) => {
-          return (
-            <WorkExp
-              workExpObj={workExpObj}
-              key={workExpObj.id}
-              index={index}
-              handleChangeWorkExp={handleChangeWorkExp}
-            />
-          );
-        })}
+          {state.workExperienceArr.map((workExpObj, index) => {
+            return (
+              <WorkExp
+                workExpObj={workExpObj}
+                key={workExpObj.id}
+                index={index}
+                handleChangeWorkExp={handleChangeWorkExp}
+              />
+            );
+          })}
 
-        <button onClick={addAnotherWorkExp}>Add work experience</button>
+          <button onClick={addAnotherWorkExp}>Add work experience</button>
 
-        {state.educationArr.map((educationObj, index) => {
-          return (
-            <Education
-              educationObj={educationObj}
-              key={educationObj.id}
-              index={index}
-              handleChangeEdu={handleChangeEdu}
-            />
-          );
-        })}
-        <button onClick={addAnotherEducation}>Add education</button>
+          {state.educationArr.map((educationObj, index) => {
+            return (
+              <Education
+                educationObj={educationObj}
+                key={educationObj.id}
+                index={index}
+                handleChangeEdu={handleChangeEdu}
+              />
+            );
+          })}
+          <button onClick={addAnotherEducation}>Add education</button>
+        </div>
 
         <Cv state={state} />
       </div>
