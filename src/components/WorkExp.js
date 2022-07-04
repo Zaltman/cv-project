@@ -1,10 +1,6 @@
 import { Component } from 'react';
 
 class WorkExp extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { handleChangeWorkExp, workExpObj, index } = this.props;
     return (

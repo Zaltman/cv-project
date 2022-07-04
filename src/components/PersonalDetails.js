@@ -1,9 +1,6 @@
 import { Component } from 'react';
 
 class PersonalDetails extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   render() {
     const { personalDetailsObj, handleChangePersonal } = this.props;
 

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import uniqid from 'uniqid';
 
 class Cv extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { state } = this.props;
     return (

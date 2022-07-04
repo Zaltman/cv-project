@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
 class Education extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  // this.addAnotherEducation = this.addAnotherEducation.bind(this);
-
   render() {
     const { educationObj, handleChangeEdu, index } = this.props;
-    // console.log(educationObj);
 
     return (
       <div>

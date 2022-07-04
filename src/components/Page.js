@@ -4,13 +4,8 @@ import Cv from './Cv';
 import Education from './Education';
 import PersonalDetails from './PersonalDetails';
 import WorkExp from './WorkExp';
-import uniqid from 'uniqid';
 
 class Page extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     const state = this.props.state;
     const addAnotherEducation = this.props.addAnotherEducation;
