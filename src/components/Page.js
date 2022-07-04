@@ -27,7 +27,7 @@ class Page extends Component {
     }
     return (
       <div>
-        <div className={state.isActive ? null : 'hidden'}>
+        <div className={`inputsContainer ${state.isActive ? '' : 'hidden'}`}>
           <PersonalDetails
             personalDetailsObj={state.personalDetails}
             handleChangePersonal={handleChangePersonal}
@@ -58,7 +58,9 @@ class Page extends Component {
           })}
           <button onClick={addAnotherEducation}>Add education</button>
         </div>
-        <button onClick={handleToggle}>{element}</button>
+        <button className="setupBtn" onClick={handleToggle}>
+          {element}
+        </button>
         <Cv state={state} />
       </div>
     );

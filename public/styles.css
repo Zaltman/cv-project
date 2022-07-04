@@ -43,6 +43,17 @@
 .hidden {
   display: none;
 }
+input {
+  padding: 2px;
+}
+button {
+  padding: 2px;
+  margin: 4px;
+}
+.setupBtn {
+  padding: 10px;
+  margin-top: 10px;
+}
 .infoContainer {
   width: 100%;
 }
