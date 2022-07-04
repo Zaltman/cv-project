@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
 
 class Cv extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Cv extends Component {
             <h2 className="title">Work experience</h2>
             {state.workExperienceArr.map((workExpObj, index) => {
               return (
-                <div className="cvWorkContainer">
+                <div key={uniqid()} className="cvWorkContainer">
                   <h3 className="subTitle">{workExpObj.position}</h3>
                   <h4 className="subSubTitle">{workExpObj.company}</h4>
                   <div>Started: {workExpObj.startDate}</div>
@@ -39,7 +40,7 @@ class Cv extends Component {
             <h2 className="title">Education</h2>
             {state.educationArr.map((educationObj, index) => {
               return (
-                <div className="cvEducationContainer">
+                <div key={uniqid()} className="cvEducationContainer">
                   <h3 className="subTitle">{educationObj.courseProgram}</h3>
                   <h4 className="subSubTitle">{educationObj.university}</h4>
                   <div>Started: {educationObj.startDate}</div>

@@ -34,7 +34,9 @@ class App extends Component {
       location: 'Atlantis, seaside city',
       description: 'I am a simple man',
     };
+
     this.state = {
+      isActive: true,
       personalDetails: personDetailsTest,
       // {
       //   id: uniqid(),
@@ -81,6 +83,10 @@ class App extends Component {
       educationArr: educationTestUnit,
     };
   }
+  handleToggle = () => {
+    this.setState({ isActive: !this.state.isActive });
+    console.log(this.state.isActive);
+  };
   getEmptyEducationSample = () => {
     const emptyEduArr = { ...this.state.educationEmptySample };
     emptyEduArr.id = uniqid();
@@ -191,6 +197,7 @@ class App extends Component {
       <div className="App">
         <Page
           state={this.state}
+          handleToggle={this.handleToggle}
           addAnotherEducation={this.addAnotherEducation}
           addAnotherWorkExp={this.addAnotherWorkExp}
           handleChangePersonal={this.handleChangePersonal}

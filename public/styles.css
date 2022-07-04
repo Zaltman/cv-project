@@ -40,8 +40,8 @@
 #phoneNumb {
 }
 
-.inputsContainer {
-  /* display: none; */
+.hidden {
+  display: none;
 }
 .infoContainer {
   width: 100%;

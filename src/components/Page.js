@@ -4,6 +4,7 @@ import Cv from './Cv';
 import Education from './Education';
 import PersonalDetails from './PersonalDetails';
 import WorkExp from './WorkExp';
+import uniqid from 'uniqid';
 
 class Page extends Component {
   // constructor(props) {
@@ -17,10 +18,16 @@ class Page extends Component {
     const handleChangePersonal = this.props.handleChangePersonal;
     const handleChangeEdu = this.props.handleChangeEdu;
     const handleChangeWorkExp = this.props.handleChangeWorkExp;
-    // console.log(addAnotherEducation);
+    const handleToggle = this.props.handleToggle;
+    let element = '';
+    if (!state.isActive) {
+      element = 'Edit setup';
+    } else {
+      element = 'Confirm setup';
+    }
     return (
       <div>
-        <div className="inputsContainer">
+        <div className={state.isActive ? null : 'hidden'}>
           <PersonalDetails
             personalDetailsObj={state.personalDetails}
             handleChangePersonal={handleChangePersonal}
@@ -51,7 +58,7 @@ class Page extends Component {
           })}
           <button onClick={addAnotherEducation}>Add education</button>
         </div>
-
+        <button onClick={handleToggle}>{element}</button>
         <Cv state={state} />
       </div>
     );
