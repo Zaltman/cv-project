@@ -38,14 +38,6 @@ class App extends Component {
     this.state = {
       isActive: true,
       personalDetails: personDetailsTest,
-      // {
-      //   id: uniqid(),
-      //   name: '',
-      //   phone: '',
-      //   email: '',
-      //   location: '',
-      //   description: '',
-      // },
       workExperience: {
         id: uniqid(),
         company: '',
@@ -85,7 +77,6 @@ class App extends Component {
   }
   handleToggle = () => {
     this.setState({ isActive: !this.state.isActive });
-    console.log(this.state.isActive);
   };
   getEmptyEducationSample = () => {
     const emptyEduArr = { ...this.state.educationEmptySample };
@@ -116,7 +107,6 @@ class App extends Component {
     let value = e.target.value;
     let newPersObj = this.state.personalDetails;
     let inputName = e.target.dataset.inputname;
-    console.log(this.state.personalDetails);
     switch (inputName) {
       case 'name':
         newPersObj.name = value;
