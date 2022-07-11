@@ -1,5 +1,4 @@
 import './App.css';
-import { Component } from 'react';
 import Page from './components/Page';
 import uniqid from 'uniqid';
 import { useState } from 'react';
@@ -72,34 +71,41 @@ function App(props) {
     educationArr: educationTestUnit,
   });
 
-  let handleToggle = () => {
-    setState.isActive((state.isActive = !state.isActive));
+  const handleToggle = () => {
+    let newState = { ...state };
+    newState.isActive = !newState.isActive;
+    setState(newState);
   };
-  let getEmptyEducationSample = () => {
+  const getEmptyEducationSample = () => {
     const emptyEduArr = { ...state.educationEmptySample };
     emptyEduArr.id = uniqid();
     return emptyEduArr;
   };
-  let getEmptyWorkExpSample = () => {
+  const getEmptyWorkExpSample = () => {
     const emptyWorkExpArr = { ...state.workExperienceEmptySample };
     emptyWorkExpArr.id = uniqid();
     return emptyWorkExpArr;
   };
 
-  let addAnotherEducation = () => {
+  const addAnotherEducation = () => {
     const eduArrToConcat = getEmptyEducationSample();
     let newArray = state.educationArr.concat(eduArrToConcat);
-    state.educationArr = newArray;
+    let newState = { ...state };
+    newState.educationArr = newArray;
+    setState(newState);
   };
-  let addAnotherWorkExp = () => {
+  const addAnotherWorkExp = () => {
     const workExpArrToConcat = getEmptyWorkExpSample();
     let newArray = state.workExperienceArr.concat(workExpArrToConcat);
-    state.workExperienceArr = newArray;
+    let newState = { ...state };
+    newState.workExperienceArr = newArray;
+    setState(newState);
   };
-  let handleChangePersonal = (e) => {
+  const handleChangePersonal = (e) => {
     let value = e.target.value;
     let newPersObj = state.personalDetails;
     let inputName = e.target.dataset.inputname;
+    let newState = { ...state };
     switch (inputName) {
       case 'name':
         newPersObj.name = value;
@@ -117,7 +123,8 @@ function App(props) {
         newPersObj.description = value;
         break;
     }
-    state.personalDetails = newPersObj;
+    newState.personalDetails = newPersObj;
+    setState(newState);
   };
 
   let handleChangeWorkExp = (e) => {
@@ -125,6 +132,8 @@ function App(props) {
     let value = e.target.value;
     let newWorkExpArr = [...state.workExperienceArr];
     let inputName = e.target.dataset.inputname;
+    let newState = { ...state };
+
     switch (inputName) {
       case 'company':
         newWorkExpArr[arrIndex].company = value;
@@ -142,16 +151,16 @@ function App(props) {
         newWorkExpArr[arrIndex].description = value;
         break;
     }
-    state.workExperienceArr = newWorkExpArr;
-    // this.setState({
-    //   workExperienceArr: newWorkExpArr,
-    // });
+    newState.workExperienceArr = newWorkExpArr;
+    setState(newState);
   };
   let handleChangeEdu = (e) => {
     let arrIndex = e.target.parentElement.dataset.index;
     let value = e.target.value;
     let newEduArr = [...state.educationArr];
     let inputName = e.target.dataset.inputname;
+    let newState = { ...state };
+
     switch (inputName) {
       case 'courseProgram':
         newEduArr[arrIndex].courseProgram = value;
@@ -169,24 +178,23 @@ function App(props) {
         newEduArr[arrIndex].description = value;
         break;
     }
-    state.educationArr = newEduArr;
+    newState.educationArr = newEduArr;
+    setState(newState);
   };
 
-  {
-    return (
-      <div className="App">
-        <Page
-          state={state}
-          handleToggle={handleToggle}
-          addAnotherEducation={addAnotherEducation}
-          addAnotherWorkExp={addAnotherWorkExp}
-          handleChangePersonal={handleChangePersonal}
-          handleChangeEdu={handleChangeEdu}
-          handleChangeWorkExp={handleChangeWorkExp}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Page
+        state={state}
+        handleToggle={handleToggle}
+        addAnotherEducation={addAnotherEducation}
+        addAnotherWorkExp={addAnotherWorkExp}
+        handleChangePersonal={handleChangePersonal}
+        handleChangeEdu={handleChangeEdu}
+        handleChangeWorkExp={handleChangeWorkExp}
+      />
+    </div>
+  );
 }
 
 export default App;
