@@ -2,110 +2,103 @@ import './App.css';
 import { Component } from 'react';
 import Page from './components/Page';
 import uniqid from 'uniqid';
+import { useState } from 'react';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.addAnotherEducation = this.addAnotherEducation.bind(this);
-
-    let educationTestUnit = [];
-    let workExpTestUnit = [];
-    educationTestUnit[0] = {
-      id: uniqid(),
-      courseProgram: 'Full stack development',
-      university: 'The odin project',
-      startDate: '2021/09/30',
-      endDate: 'Ongoing',
-      description: 'Lore ipsum text',
-    };
-    workExpTestUnit[0] = {
-      id: uniqid(),
-      company: 'Things and stuff LTD',
-      position: 'Operator',
-      startDate: '2015/05/07',
-      endDate: '2019/04/07',
-      description: 'Doing things and stuff 5 days a week',
-    };
-    let personDetailsTest = {
-      id: uniqid(),
-      name: 'John Johnson ',
-      phone: '+3641231456',
-      email: 'johnjohnson@email.com',
-      location: 'Atlantis, seaside city',
-      description: 'I am a simple man',
-    };
-
-    this.state = {
-      isActive: true,
-      personalDetails: personDetailsTest,
-      workExperience: {
-        id: uniqid(),
-        company: '',
-        position: '',
-        startDate: '',
-        endDate: '',
-        description: '',
-      },
-      workExperienceEmptySample: {
-        id: uniqid(),
-        company: '',
-        position: '',
-        startDate: '',
-        endDate: '',
-        description: '',
-      },
-      workExperienceArr: workExpTestUnit,
-      education: {
-        id: uniqid(),
-        courseProgram: '',
-        university: '',
-        startDate: '',
-        endDate: '',
-        description: '',
-      },
-      educationEmptySample: {
-        id: uniqid(),
-        courseProgram: '',
-        university: '',
-        startDate: '',
-        endDate: '',
-        description: '',
-      },
-
-      educationArr: educationTestUnit,
-    };
-  }
-  handleToggle = () => {
-    this.setState({ isActive: !this.state.isActive });
+function App(props) {
+  let educationTestUnit = [];
+  let workExpTestUnit = [];
+  educationTestUnit[0] = {
+    id: uniqid(),
+    courseProgram: 'Full stack development',
+    university: 'The odin project',
+    startDate: '2021/09/30',
+    endDate: 'Ongoing',
+    description: 'Lore ipsum text',
   };
-  getEmptyEducationSample = () => {
-    const emptyEduArr = { ...this.state.educationEmptySample };
+  workExpTestUnit[0] = {
+    id: uniqid(),
+    company: 'Things and stuff LTD',
+    position: 'Operator',
+    startDate: '2015/05/07',
+    endDate: '2019/04/07',
+    description: 'Doing things and stuff 5 days a week',
+  };
+  let personDetailsTest = {
+    id: uniqid(),
+    name: 'John Johnson ',
+    phone: '+3641231456',
+    email: 'johnjohnson@email.com',
+    location: 'Atlantis, seaside city',
+    description: 'I am a simple man',
+  };
+
+  const [state, setState] = useState({
+    isActive: true,
+    personalDetails: personDetailsTest,
+    workExperience: {
+      id: uniqid(),
+      company: '',
+      position: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
+    workExperienceEmptySample: {
+      id: uniqid(),
+      company: '',
+      position: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
+    workExperienceArr: workExpTestUnit,
+    education: {
+      id: uniqid(),
+      courseProgram: '',
+      university: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
+    educationEmptySample: {
+      id: uniqid(),
+      courseProgram: '',
+      university: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
+
+    educationArr: educationTestUnit,
+  });
+
+  let handleToggle = () => {
+    setState.isActive((state.isActive = !state.isActive));
+  };
+  let getEmptyEducationSample = () => {
+    const emptyEduArr = { ...state.educationEmptySample };
     emptyEduArr.id = uniqid();
     return emptyEduArr;
   };
-  getEmptyWorkExpSample = () => {
-    const emptyWorkExpArr = { ...this.state.workExperienceEmptySample };
+  let getEmptyWorkExpSample = () => {
+    const emptyWorkExpArr = { ...state.workExperienceEmptySample };
     emptyWorkExpArr.id = uniqid();
     return emptyWorkExpArr;
   };
 
-  addAnotherEducation = () => {
-    const eduArrToConcat = this.getEmptyEducationSample();
-    let newArray = this.state.educationArr.concat(eduArrToConcat);
-    this.setState({
-      educationArr: newArray,
-    });
+  let addAnotherEducation = () => {
+    const eduArrToConcat = getEmptyEducationSample();
+    let newArray = state.educationArr.concat(eduArrToConcat);
+    state.educationArr = newArray;
   };
-  addAnotherWorkExp = () => {
-    const workExpArrToConcat = this.getEmptyWorkExpSample();
-    let newArray = this.state.workExperienceArr.concat(workExpArrToConcat);
-    this.setState({
-      workExperienceArr: newArray,
-    });
+  let addAnotherWorkExp = () => {
+    const workExpArrToConcat = getEmptyWorkExpSample();
+    let newArray = state.workExperienceArr.concat(workExpArrToConcat);
+    state.workExperienceArr = newArray;
   };
-  handleChangePersonal = (e) => {
+  let handleChangePersonal = (e) => {
     let value = e.target.value;
-    let newPersObj = this.state.personalDetails;
+    let newPersObj = state.personalDetails;
     let inputName = e.target.dataset.inputname;
     switch (inputName) {
       case 'name':
@@ -124,15 +117,13 @@ class App extends Component {
         newPersObj.description = value;
         break;
     }
-    this.setState({
-      personalDetails: newPersObj,
-    });
+    state.personalDetails = newPersObj;
   };
 
-  handleChangeWorkExp = (e) => {
+  let handleChangeWorkExp = (e) => {
     let arrIndex = e.target.parentElement.dataset.index;
     let value = e.target.value;
-    let newWorkExpArr = [...this.state.workExperienceArr];
+    let newWorkExpArr = [...state.workExperienceArr];
     let inputName = e.target.dataset.inputname;
     switch (inputName) {
       case 'company':
@@ -151,14 +142,15 @@ class App extends Component {
         newWorkExpArr[arrIndex].description = value;
         break;
     }
-    this.setState({
-      workExperienceArr: newWorkExpArr,
-    });
+    state.workExperienceArr = newWorkExpArr;
+    // this.setState({
+    //   workExperienceArr: newWorkExpArr,
+    // });
   };
-  handleChangeEdu = (e) => {
+  let handleChangeEdu = (e) => {
     let arrIndex = e.target.parentElement.dataset.index;
     let value = e.target.value;
-    let newEduArr = [...this.state.educationArr];
+    let newEduArr = [...state.educationArr];
     let inputName = e.target.dataset.inputname;
     switch (inputName) {
       case 'courseProgram':
@@ -177,22 +169,20 @@ class App extends Component {
         newEduArr[arrIndex].description = value;
         break;
     }
-    this.setState({
-      educationArr: newEduArr,
-    });
+    state.educationArr = newEduArr;
   };
 
-  render() {
+  {
     return (
       <div className="App">
         <Page
-          state={this.state}
-          handleToggle={this.handleToggle}
-          addAnotherEducation={this.addAnotherEducation}
-          addAnotherWorkExp={this.addAnotherWorkExp}
-          handleChangePersonal={this.handleChangePersonal}
-          handleChangeEdu={this.handleChangeEdu}
-          handleChangeWorkExp={this.handleChangeWorkExp}
+          state={state}
+          handleToggle={handleToggle}
+          addAnotherEducation={addAnotherEducation}
+          addAnotherWorkExp={addAnotherWorkExp}
+          handleChangePersonal={handleChangePersonal}
+          handleChangeEdu={handleChangeEdu}
+          handleChangeWorkExp={handleChangeWorkExp}
         />
       </div>
     );
